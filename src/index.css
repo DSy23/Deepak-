@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-primary: #ffffff;
+  --color-brand-blue: #2d0050;
+  --color-brand-blue-dark: #080112;
+  --color-brand-accent: #8B5CF6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-[#080112] text-[#ffffff] font-sans antialiased selection:bg-[#8B5CF6] selection:text-white overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .grid-bg-dark {
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, black, transparent 90%);
+  }
+
+  .tech-card {
+    @apply bg-white/[0.01] backdrop-blur-sm border border-white/5 rounded-lg transition-all duration-500 relative overflow-hidden;
+  }
+
+  .tech-card::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500;
+  }
+
+  .tech-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .tech-card:hover {
+    @apply border-[#8B5CF6]/20 bg-white/[0.04] shadow-2xl scale-[1.01];
+  }
+
+  .section-padding {
+    @apply py-20 md:py-40 px-6 md:px-12 lg:px-24;
+  }
+
+  .nav-blur {
+    @apply bg-[#080112]/40 backdrop-blur-2xl border-b border-white/5;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-[#8B5CF6];
+  }
+
+  .canvas-container {
+    @apply fixed inset-0 -z-20 pointer-events-none;
+  }
+}
